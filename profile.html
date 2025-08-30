@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details</title>
+  <link rel="stylesheet" href="details.css">
+</head>
+<body>
+  <div class="container p-0">
+
+    <!-- Left Side -->
+    <div class="left-side"></div>
+
+    <!-- Right Side -->
+    <div class="right-side">
+      
+      <!-- Navbar -->
+      <div class="navbar-tabs">
+        <div class="nav-title">YoungMinds</div>
+        <div class="nav-links">
+          <a href="#" class="active">Profile</a>
+          <a href="#">Settings</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="card">
+        <h2 class="card-title">Complete Your Profile</h2>
+        <form id="detailsForm">
+
+          <!-- Split Layout -->
+          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+
+            <!-- Left Box: Avatar Upload -->
+            <div style="flex:1; min-width:250px; text-align:center;">
+              <label for="avatarUpload">Profile Picture</label>
+              <div class="avatar-preview" id="avatarPreview">No Image</div>
+              <input type="file" id="avatarUpload" accept="image/*" style="margin-top:15px;">
+            </div>
+
+            <!-- Right Box: Other Details -->
+            <div style="flex:1; min-width:250px;">
+              <div class="form-group" style="margin-bottom:15px;">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom:15px;">
+                <label for="number">Phone Number</label>
+                <input type="tel" id="number" placeholder="Enter your number" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom:15px;">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="Enter your age" required>
+              </div>
+
+              <div class="form-group" style="margin-bottom:15px;">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <div style="text-align:center; margin-top:20px;">
+            <button type="submit" class="btn">Save Details</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="details.js"></script>
+</body>
+</html>
