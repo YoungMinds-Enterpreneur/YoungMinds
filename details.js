@@ -91,20 +91,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       // Optional: upload avatar
-      let avatarUrl = null;
-      if (pfpInput.files[0]) {
-        const file = pfpInput.files[0];
-        const filePath = `avatars/${user.id}/${Date.now()}_${file.name}`;
+     let avatarUrl = "https://your-default-image.png"; // fallback
+if (pfpInput.files[0]) {
+  const file = pfpInput.files[0];
+  const filePath = `${user.id}/${Date.now()}_${file.name}`;
 
-        const { error: uploadError } = await supabase.storage
-          .from("avatars") // ensure this bucket exists and is public or you generate signed URLs
-          .upload(filePath, file, { upsert: true });
+  const { error: uploadError } = await supabase.storage
+    .from("avatars")
+    .upload(filePath, file, { upsert: true });
+  if (uploadError) throw uploadError;
 
-        if (uploadError) throw uploadError;
+  const { data: publicData } = supabase.storage
+    .from("avatars")
+    .getPublicUrl(filePath);
+  avatarUrl = publicData.publicUrl;
+}
 
-        const { data: publicData } = supabase.storage.from("avatars").getPublicUrl(filePath);
-        avatarUrl = publicData.publicUrl;
-      }
+
 
       // Upsert into profiles table under user_id
       const { error: upsertError } = await supabase
